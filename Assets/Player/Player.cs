@@ -6,7 +6,7 @@ namespace DungeonMungeon
 {
     public class Player : MonoBehaviour
     {
-        private float _speed = 2400;
+        [SerializeField] private float _speed = 4400;
         private Rigidbody2D _rb;
         void Awake()
         {
@@ -16,13 +16,31 @@ namespace DungeonMungeon
 
         void Update()
         {
+            /* float inputX = Input.GetAxisRaw("Horizontal");
+             float inputY = Input.GetAxisRaw("Vertical");
+
+             var movement = new Vector2(inputX, inputY).normalized;
+
+             _rb.velocity = movement * _speed * Time.deltaTime;
+             */
             float inputX = Input.GetAxisRaw("Horizontal");
             float inputY = Input.GetAxisRaw("Vertical");
 
-            _rb.velocity = new Vector2(inputX * _speed * Time.deltaTime, inputY * _speed * Time.deltaTime).normalized;
+            if (inputX != 0 || inputY != 0)
+            {
+                if (inputX != 0 && inputY != 0)
+                {
+                    inputX *= 1f;
+                    inputY *= 1f;
+                }
 
-            
-        
+                _rb.velocity = new Vector2(inputX * _speed, inputY * _speed);
+            }
+            else
+            {
+                _rb.velocity = new Vector2(0, 0);
+            }
+
         }
     }
 }
