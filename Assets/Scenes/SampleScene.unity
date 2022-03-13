@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 149590515}
   - component: {fileID: 149590518}
   - component: {fileID: 149590521}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Passive
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 525144265}
   - component: {fileID: 525144267}
   - component: {fileID: 525144266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hostile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -776,6 +776,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 500
   _camera: {fileID: 519420031}
+  health: 100
+  attackPoint: {fileID: 979599626}
+  range: 0.56
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!70 &874841568
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -853,7 +859,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.12, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 979599626}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1073,6 +1080,51 @@ Transform:
   m_Father: {fileID: 1119629962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &979599625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979599626}
+  - component: {fileID: 979599627}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979599626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979599625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 874841570}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979599627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979599625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb18acda9de02f648b2e8b7aee702b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 874841570}
+  fRadius: 0.82
 --- !u!1 &1119629961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,7 +1172,7 @@ GameObject:
   - component: {fileID: 1884876714}
   - component: {fileID: 1884876717}
   - component: {fileID: 1884876720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ranged Hostile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
