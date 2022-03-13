@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DungeonMungeon
 {
-    public class Player : MonoBehaviour
+    public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private float _speed;
         [SerializeField] private Camera _camera;
