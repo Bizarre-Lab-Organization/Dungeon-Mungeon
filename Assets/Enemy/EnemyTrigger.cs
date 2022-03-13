@@ -8,7 +8,7 @@ namespace DungeonMungeon
     {
         private void OnCollisionEnter2D(Collision2D collision) {
             if(collision.gameObject.tag == "Player"){
-                this.GetComponent<EnemyMovement>().enabled = true;
+                this.GetComponent<EnemyAI>().enabled = true;
             }
         }
     }

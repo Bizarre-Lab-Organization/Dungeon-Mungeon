@@ -28,13 +28,13 @@ namespace DungeonMungeon
 
         void Trigger(){
             if(_distance <= _rangeOn){
-                this.GetComponent<EnemyMovement>().enabled = true;
+                this.GetComponent<EnemyAI>().enabled = true;
             }
         }
 
         void Untrigger(){
             if(_distance >= _rangeOff){
-                this.GetComponent<EnemyMovement>().enabled = false;
+                this.GetComponent<EnemyAI>().enabled = false;
                 _rb.velocity = Vector2.zero;
             }
         }
