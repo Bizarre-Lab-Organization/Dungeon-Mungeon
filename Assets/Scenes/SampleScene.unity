@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 149590515}
   - component: {fileID: 149590518}
   - component: {fileID: 149590521}
+  - component: {fileID: 149590522}
   m_Layer: 0
   m_Name: Passive
   m_TagString: Enemy
@@ -302,6 +303,20 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &149590522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149590514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prassive: 1
+  ranged: 0
 --- !u!1 &426583569
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558149182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7222886, y: -0.95017487, z: 0}
+  m_LocalPosition: {x: 31.93, y: 22.14, z: 0}
   m_LocalScale: {x: 26.18, y: 13.475, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

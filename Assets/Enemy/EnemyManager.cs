@@ -6,16 +6,20 @@ namespace DungeonMungeon
 {
     public class EnemyManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] public bool prassive; // if not passive - hostile
+        [SerializeField] public bool ranged; // if not ranged - melee
 
-        // Update is called once per frame
-        void Update()
+        //Ranged:
+        [HideInInspector] public int range;
+
+        /*void Awake()
         {
-        
+            range = EnemyEditor.
+        }*/
+
+        private void Start()
+        {
+            Debug.Log(range);
         }
     }
 }
