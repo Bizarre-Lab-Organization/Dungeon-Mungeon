@@ -7,10 +7,12 @@ namespace DungeonMungeon
 {
     public class EnemyAI : MonoBehaviour
     {
+        private EnemyManager enemyManager;
+
         [SerializeField] private Transform _target;
 
-        [SerializeField] private float _speed = 300f;
-        [SerializeField] private float _nextWaypointDistance = 3f;
+        [SerializeField] private float _speed;
+        private float _nextWaypointDistance = 3f;
 
         Path path;
         int currentWaypoint = 0;
@@ -18,6 +20,14 @@ namespace DungeonMungeon
 
         private Seeker _seeker;
         private Rigidbody2D _rb; 
+
+        private void Awake()
+        {
+            enemyManager = gameObject.GetComponent<EnemyManager>();
+
+            _speed = enemyManager.Speed;
+            _target = enemyManager.Target;
+        }
 
         void Start()
         {
@@ -27,7 +37,6 @@ namespace DungeonMungeon
             InvokeRepeating("UpdatePath", 0f, 0.5f);
             _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
         }
-
 
         void FixedUpdate()
         {
@@ -53,8 +62,6 @@ namespace DungeonMungeon
             }
         }
 
-
-
         void OnPathComplete(Path p)
         {
             if(!p.error)
@@ -67,6 +74,5 @@ namespace DungeonMungeon
         void UpdatePath(){
             if (_seeker.IsDone()) _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
         }
-
     }
 }

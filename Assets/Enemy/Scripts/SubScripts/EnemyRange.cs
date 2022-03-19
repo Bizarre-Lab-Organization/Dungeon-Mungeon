@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace DungeonMungeon
 {
-    public class EnemyRangedTrigger : MonoBehaviour
+    public class EnemyRange : MonoBehaviour
     {
+        private EnemyManager enemyManager;
+
         [SerializeField] private float _rangeOn = 5, _rangeOff = 10;
         private float _distance, x, y;
         private Rigidbody2D _rb;
@@ -14,6 +16,10 @@ namespace DungeonMungeon
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+
+            enemyManager = gameObject.GetComponent<EnemyManager>();
+
+            _player = enemyManager.Target.gameObject.GetComponent<Rigidbody2D>();
         }
 
         void Update()

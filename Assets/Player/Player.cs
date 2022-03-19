@@ -28,4 +28,9 @@ namespace DungeonMungeon
             _rb.velocity = _moveDir * _speed * Time.deltaTime;
         }
     }
+
+    /*public static class StaticPlayer
+    {
+        [HideInInspector] public static GameObject playerObject;
+    }*/
 }
