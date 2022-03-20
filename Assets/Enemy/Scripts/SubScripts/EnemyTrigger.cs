@@ -8,7 +8,14 @@ namespace DungeonMungeon
     {
         private void OnCollisionEnter2D(Collision2D collision) {
             if(collision.gameObject.tag == "Player"){
-                this.GetComponent<EnemyAI>().enabled = true;
+                if (this.GetComponent<EnemyMelee>() != null)
+                {
+                    this.GetComponent<EnemyMelee>().enabled = true;
+                }
+                else
+                {
+                    this.GetComponent<EnemyRanged>().enabled = true;
+                }
             }
         }
     }

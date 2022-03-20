@@ -5,12 +5,13 @@ using Pathfinding;
 
 namespace DungeonMungeon
 {
-    public class EnemyAI : MonoBehaviour
+    public class EnemyRanged : MonoBehaviour
     {
         private EnemyManager enemyManager;
 
         [SerializeField] private Transform _target;
 
+        [SerializeField] private float _rangeToStayAt;
         [SerializeField] private float _speed;
         private float _nextWaypointDistance = 3f;
 
@@ -19,7 +20,7 @@ namespace DungeonMungeon
         bool reachedEndOfPath = false;
 
         private Seeker _seeker;
-        private Rigidbody2D _rb; 
+        private Rigidbody2D _rb;
 
         private void Awake()
         {
@@ -27,6 +28,7 @@ namespace DungeonMungeon
 
             _speed = enemyManager.Speed;
             _target = enemyManager.Target;
+            _rangeToStayAt = enemyManager.RangeToStayAt;
         }
 
         void Start()
@@ -42,11 +44,12 @@ namespace DungeonMungeon
         {
             if (path == null) return;
 
-            if(currentWaypoint >= path.vectorPath.Count)
+            if (currentWaypoint + _rangeToStayAt >= path.vectorPath.Count)
             {
                 reachedEndOfPath = true;
                 return;
-            }else
+            }
+            else
             {
                 reachedEndOfPath = false;
             }
@@ -64,14 +67,15 @@ namespace DungeonMungeon
 
         void OnPathComplete(Path p)
         {
-            if(!p.error)
+            if (!p.error)
             {
                 path = p;
                 currentWaypoint = 0;
             }
         }
 
-        void UpdatePath(){
+        void UpdatePath()
+        {
             if (_seeker.IsDone()) _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
         }
     }

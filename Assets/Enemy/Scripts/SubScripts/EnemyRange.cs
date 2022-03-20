@@ -8,7 +8,7 @@ namespace DungeonMungeon
     {
         private EnemyManager enemyManager;
 
-        [SerializeField] private float _rangeOn = 5, _rangeOff = 10;
+        [SerializeField] private float _rangeOn, _rangeOff;
         private float _distance, x, y;
         private Rigidbody2D _rb;
         [SerializeField] private Rigidbody2D _player;
@@ -20,6 +20,8 @@ namespace DungeonMungeon
             enemyManager = gameObject.GetComponent<EnemyManager>();
 
             _player = enemyManager.Target.gameObject.GetComponent<Rigidbody2D>();
+            _rangeOn = enemyManager.RangeStart;
+            _rangeOff = enemyManager.RangeEnd;
         }
 
         void Update()
@@ -34,13 +36,19 @@ namespace DungeonMungeon
 
         void Trigger(){
             if(_distance <= _rangeOn){
-                this.GetComponent<EnemyAI>().enabled = true;
+                if (this.GetComponent<EnemyMelee>() != null)
+                {
+                    this.GetComponent<EnemyMelee>().enabled = true;
+                } else
+                {
+                    this.GetComponent<EnemyRanged>().enabled = true;
+                }
             }
         }
 
         void Untrigger(){
             if(_distance >= _rangeOff){
-                this.GetComponent<EnemyAI>().enabled = false;
+                this.GetComponent<EnemyMelee>().enabled = false;
                 _rb.velocity = Vector2.zero;
             }
         }

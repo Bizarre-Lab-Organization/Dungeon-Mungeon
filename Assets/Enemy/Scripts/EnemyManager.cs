@@ -8,9 +8,11 @@ namespace DungeonMungeon
     {
         [Header("Type")]
         [SerializeField] private bool _passive; // if not passive - hostile
+        [SerializeField] [HideInInspector] private float _rangeStart; // when hostile
+        [SerializeField] [HideInInspector] private float _rangeEnd;
 
         [SerializeField] private bool _ranged; // if not ranged - melee
-        private int _range;
+        [SerializeField] [HideInInspector] private float _rangeToStayAt;
 
         [Header("Common")]
         [SerializeField] private float _speed;
@@ -22,16 +24,28 @@ namespace DungeonMungeon
             set { _passive = value; }
         }
 
+        public float RangeStart
+        {
+            get { return _rangeStart; }
+            set { _rangeStart = value; }
+        }
+
+        public float RangeEnd
+        {
+            get { return _rangeEnd; }
+            set { _rangeEnd = value; }
+        }
+
         public bool Ranged
         {
             get { return _ranged; }
             set { _ranged = value; }
         }
 
-        public int Range
+        public float RangeToStayAt
         {
-            get { return _range; }
-            set { _range = value; }
+            get { return _rangeToStayAt; }
+            set { _rangeToStayAt = value; }
         }
 
         public float Speed
@@ -44,11 +58,6 @@ namespace DungeonMungeon
         {
             get { return _target; }
             set { _target = value; }
-        }
-
-        private void Start()
-        {
-            Debug.Log(_range);
         }
     }
 }
