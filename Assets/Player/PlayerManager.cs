@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DungeonMungeon
 {
@@ -17,6 +20,8 @@ namespace DungeonMungeon
 
         private List<Collider2D> interactables = new List<Collider2D>();
         private List<Collider2D> interactableslist = new List<Collider2D>();
+        Transform bestTarget = new GameObject().transform;
+        Transform prevBestTarget = new GameObject().transform;
 
         public Transform attackPoint;
         public Camera _camera;
@@ -70,24 +75,67 @@ namespace DungeonMungeon
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, interactRange, interactableLayers);
 
-            interactables.AddRange(colliders);
+            bestTarget = null;
+            Transform current = null;
+            float closestDistanceSqrt = Mathf.Infinity;
+            Vector3 playerPos = transform.position;
 
-            foreach (Collider2D asd in interactableslist)
+            if(colliders.Length == 0)
             {
-                if (!interactables.Contains(asd))
-                {
-                    Destroy(asd.transform.Find("tek").gameObject);
-                }
+                current = null;
             }
 
-            interactableslist = new List<Collider2D>(interactables); 
-
-            foreach (Collider2D item in interactableslist)
+            else
             {
-                if (item.transform.Find("tek")) return;
+                foreach (Collider2D target in colliders)
+                {
+                    Vector3 direction = target.transform.position - playerPos;
+                    float distToTarget = direction.sqrMagnitude;
+                    if (distToTarget < closestDistanceSqrt)
+                    {
+                        closestDistanceSqrt = distToTarget;
+                        current = target.transform; 
+                    }
 
-                GameObject prop = Instantiate(promp, item.transform.position + new Vector3(0, 1.5f), new Quaternion(), item.transform);
-                prop.name = "tek"; 
+                }
+            }
+            
+            if (current != null)
+            {
+                Debug.Log(1);
+                {
+                    if (!current.Equals(bestTarget))
+                    {
+                        Debug.Log(3);
+                        bestTarget = current;
+                    }
+                    else Debug.Log(4);
+                } 
+            }
+            else
+            {
+                Debug.Log(2);
+                Destroy(prevBestTarget.transform.Find("tek").gameObject);
+                bestTarget = null;
+            }
+
+            try
+            {
+                if (!bestTarget.Equals(prevBestTarget))
+                {
+                    Debug.Log(prevBestTarget + " " + bestTarget);
+                    Destroy(prevBestTarget.transform.Find("tek").gameObject);
+                    
+                }
+            }
+            catch { };
+
+            if (bestTarget != null) prevBestTarget = bestTarget;
+
+            if (!prevBestTarget.Find("tek"))
+            {
+                GameObject prop = Instantiate(promp, prevBestTarget.transform.position + new Vector3(0, 1.5f), new Quaternion(), prevBestTarget.transform);
+                prop.name = "tek";
             }
         }
 
