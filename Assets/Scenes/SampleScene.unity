@@ -135,9 +135,8 @@ GameObject:
   - component: {fileID: 149590519}
   - component: {fileID: 149590517}
   - component: {fileID: 149590516}
-  - component: {fileID: 149590515}
-  - component: {fileID: 149590518}
   - component: {fileID: 149590521}
+  - component: {fileID: 149590515}
   m_Layer: 0
   m_Name: Passive
   m_TagString: Enemy
@@ -154,9 +153,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 149590514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc36c14a8db4664e8639164e93d61ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _passive: 1
+  _ranged: 0
+  _range: 5
+  _rangeOn: 7
+  _rangeOff: 7
+  _target: {fileID: 874841570}
+  _speed: 300
+  _nextWaypointDistance: 3
 --- !u!58 &149590516
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,21 +201,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &149590518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149590514}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 874841570}
-  _speed: 300
-  _nextWaypointDistance: 3
 --- !u!212 &149590519
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -507,7 +499,7 @@ GameObject:
   - component: {fileID: 525144264}
   - component: {fileID: 525144265}
   - component: {fileID: 525144267}
-  - component: {fileID: 525144266}
+  - component: {fileID: 525144261}
   m_Layer: 0
   m_Name: Hostile
   m_TagString: Enemy
@@ -515,6 +507,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &525144261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525144260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _passive: 0
+  _ranged: 0
+  _range: 5
+  _rangeOn: 5
+  _rangeOff: 5
+  _target: {fileID: 874841570}
+  _speed: 300
+  _nextWaypointDistance: 3
 --- !u!212 &525144262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -617,21 +629,6 @@ CircleCollider2D:
   m_Offset: {x: -0.0068609715, y: 0}
   serializedVersion: 2
   m_Radius: 0.34219766
---- !u!114 &525144266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525144260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 874841570}
-  _speed: 300
-  _nextWaypointDistance: 3
 --- !u!114 &525144267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,9 +1114,8 @@ GameObject:
   - component: {fileID: 1884876718}
   - component: {fileID: 1884876716}
   - component: {fileID: 1884876715}
-  - component: {fileID: 1884876714}
-  - component: {fileID: 1884876717}
   - component: {fileID: 1884876720}
+  - component: {fileID: 1884876714}
   m_Layer: 0
   m_Name: Ranged Hostile
   m_TagString: Enemy
@@ -1136,12 +1132,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884876713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df1f4612d5bf8b4b9f1a99d9140ec77, type: 3}
+  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _passive: 0
+  _ranged: 0
+  _range: 5
   _rangeOn: 5
-  _rangeOff: 6
-  _player: {fileID: 874841571}
+  _rangeOff: 5
+  _target: {fileID: 874841570}
+  _speed: 300
+  _nextWaypointDistance: 3
 --- !u!58 &1884876715
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1179,21 +1180,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1884876717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884876713}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 874841570}
-  _speed: 300
-  _nextWaypointDistance: 3
 --- !u!212 &1884876718
 SpriteRenderer:
   m_ObjectHideFlags: 0
