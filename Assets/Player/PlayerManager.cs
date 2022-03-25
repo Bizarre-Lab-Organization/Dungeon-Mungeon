@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace DungeonMungeon
 {
@@ -29,6 +30,7 @@ namespace DungeonMungeon
         private Rigidbody2D _rb;
         private Vector2 _moveDir;     
         private LayerMask interactableLayers;
+        [SerializeField] Text interactText;
 
         void Awake()
         {
@@ -76,16 +78,16 @@ namespace DungeonMungeon
             Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, interactRange, interactableLayers);
 
             bestTarget = null;
-            Transform current = null;
+            //Transform current = null;
             float closestDistanceSqrt = Mathf.Infinity;
             Vector3 playerPos = transform.position;
 
-            if(colliders.Length == 0)
+           /* if(colliders.Length == 0)
             {
                 current = null;
             }
 
-            else
+            else*/
             {
                 foreach (Collider2D target in colliders)
                 {
@@ -94,13 +96,21 @@ namespace DungeonMungeon
                     if (distToTarget < closestDistanceSqrt)
                     {
                         closestDistanceSqrt = distToTarget;
-                        current = target.transform; 
+                        bestTarget = target.transform; 
                     }
 
                 }
             }
+            if (bestTarget != null)
+            {
+                interactText.enabled = true;
+                interactText.text = "Interact with " + bestTarget.name;
+                Debug.Log(bestTarget.name);
+            }
+            else interactText.enabled = false;
             
-            if (current != null)
+            
+            /*if (current != null)
             {
                 Debug.Log(1);
                 {
@@ -136,7 +146,7 @@ namespace DungeonMungeon
             {
                 GameObject prop = Instantiate(promp, prevBestTarget.transform.position + new Vector3(0, 1.5f), new Quaternion(), prevBestTarget.transform);
                 prop.name = "tek";
-            }
+            }*/
         }
 
         private void OnDrawGizmos()
