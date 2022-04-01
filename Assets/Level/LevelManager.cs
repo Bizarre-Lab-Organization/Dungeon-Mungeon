@@ -21,5 +21,10 @@ namespace DungeonMungeon
             SceneLoader.LoadLevel(levelIndex);
             _animator.Rebind();
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
