@@ -31,12 +31,15 @@ namespace DungeonMungeon
         private Vector2 _moveDir;     
         private LayerMask interactableLayers;
         [SerializeField] Text interactText;
+        public Material outliners;
+        public Material defaultSprite;
 
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
 
             interactableLayers = LayerMask.GetMask("Interactables");
+            
         }
 
         void Update()
@@ -77,6 +80,7 @@ namespace DungeonMungeon
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, interactRange, interactableLayers);
 
+            prevBestTarget = bestTarget;
             bestTarget = null;
             //Transform current = null;
             float closestDistanceSqrt = Mathf.Infinity;
@@ -88,26 +92,40 @@ namespace DungeonMungeon
             }
 
             else*/
-            {
-                foreach (Collider2D target in colliders)
-                {
-                    Vector3 direction = target.transform.position - playerPos;
-                    float distToTarget = direction.sqrMagnitude;
-                    if (distToTarget < closestDistanceSqrt)
-                    {
-                        closestDistanceSqrt = distToTarget;
-                        bestTarget = target.transform; 
-                    }
 
+            
+            foreach (Collider2D target in colliders)
+            {
+                Vector3 direction = target.transform.position - playerPos;
+                float distToTarget = direction.sqrMagnitude;
+                if (distToTarget < closestDistanceSqrt)
+                {
+                    closestDistanceSqrt = distToTarget;
+                    bestTarget = target.transform; 
                 }
+
+            }
+            if (bestTarget == null && prevBestTarget == null) return;
+
+            
+            if (!prevBestTarget.Equals(bestTarget))
+            {
+                prevBestTarget.GetComponent<SpriteRenderer>().material = defaultSprite;
             }
             if (bestTarget != null)
-            {
+            { 
                 interactText.enabled = true;
                 interactText.text = "Interact with " + bestTarget.name;
                 Debug.Log(bestTarget.name);
+                bestTarget.GetComponent<SpriteRenderer>().material = outliners;    
             }
-            else interactText.enabled = false;
+            else 
+            {
+                //prevBestTarget.GetComponent<SpriteRenderer>().material = defaultSprite;
+                //prevBestTarget = null;
+                interactText.enabled = false;
+            }
+
             
             
             /*if (current != null)

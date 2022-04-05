@@ -994,7 +994,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.2908517, g: 0.0015574975, b: 0.3301887, a: 1}
   m_FlipX: 0
@@ -1132,7 +1132,6 @@ GameObject:
   - component: {fileID: 874841571}
   - component: {fileID: 874841568}
   - component: {fileID: 874841567}
-  - component: {fileID: 874841572}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1163,6 +1162,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactText: {fileID: 249152519}
+  outliners: {fileID: 2100000, guid: 5a6db85ebb9466f4b90af9ebdd3c4fdc, type: 2}
+  defaultSprite: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!70 &874841568
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1238,7 +1239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874841566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.76, y: -3.8, z: 0}
+  m_LocalPosition: {x: 5.7, y: -4.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 979599626}
@@ -1266,18 +1267,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &874841572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874841566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408fc8a838094b3408d77e26f72666c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &879846609
 GameObject:
   m_ObjectHideFlags: 0
