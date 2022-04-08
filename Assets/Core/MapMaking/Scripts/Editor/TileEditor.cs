@@ -3,13 +3,12 @@ using UnityEditor;
 using UnityEngine.Tilemaps;
 using UnityEditor.SceneManagement;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DungeonMungeon
 {
     public class TileEditor : Editor
     {
-        [SerializeField] static GameObject prefabObject;
-
         [MenuItem("Tilemaps/Compress All")]
         static void CompressAll()
         {
@@ -19,7 +18,7 @@ namespace DungeonMungeon
             }
         }
 
-        [MenuItem("Tilemaps/Get All Tilemaps")]
+        /*[MenuItem("Tilemaps/Get All Tilemaps")]
         static void GetAllTilemaps()
         {
             Tilemap[] tiles = Object.FindObjectsOfType(typeof(Tilemap)) as Tilemap[];
@@ -58,6 +57,137 @@ namespace DungeonMungeon
                     }
                 }
             }
+        }*/
+
+        [MenuItem("Tilemaps/Convert To Transparentable")]
+        static void ConvertToTransparentable()
+        {
+            GameObject go = Selection.activeObject as GameObject;
+
+            if (go.GetComponent<Tilemap>() != null && go.GetComponent<TilemapRenderer>() != null)
+            {
+                if (go.name == "Walls")
+                {
+                    Tilemap tilemap = go.GetComponent<Tilemap>();
+                    Grid grid = go.GetComponentInParent<Grid>();
+
+                    BoundsInt bounds = tilemap.cellBounds;
+                    TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+                    
+                    for (int x = 0; x < bounds.size.x; x++)
+                    {
+                        for (int y = 0; y < bounds.size.y; y++)
+                        {
+                            TileBase tile = allTiles[x + y * bounds.size.x];
+
+                            if (tile != null)
+                            {
+                                Vector3Int localPlace = new Vector3Int(x, y, (int)tilemap.transform.position.y);
+                                Vector3 pos = (grid.GetCellCenterWorld(localPlace) + tilemap.localBounds.center) - tilemap.localBounds.size / 2;
+
+                                bool found = false;
+
+                                foreach (Transform prefab in go.transform)
+                                {
+                                    if (prefab.transform.position == pos)
+                                    {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!found)
+                                {
+                                    GameObject til = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Assets/Core/MapMaking/Level_test/Prefabs/Wall Prefab.prefab", typeof(GameObject)) as GameObject) as GameObject;
+                                    til.transform.parent = go.transform;
+                                    til.transform.position = pos;
+
+                                    tilemap.SetTile(tilemap.WorldToCell(pos), grid.gameObject.GetComponent<GridOptions>().TileToReplaceWith);
+                                }
+                            }
+                        }
+                    }
+                }
+            } else
+            {
+                Debug.LogWarning("You have to select the Tilemap you want to convert.");
+            }
+        }
+
+        [MenuItem("Tilemaps/Remove Unsused Transparentable")]
+        static void RemoveUnsusedTransparentable()
+        {
+            GameObject go = Selection.activeObject as GameObject;
+
+            if (go.GetComponent<Tilemap>() != null && go.GetComponent<TilemapRenderer>() != null)
+            {
+                if (go.name == "Walls")
+                {
+                    Tilemap tilemap = go.GetComponent<Tilemap>();
+                    Grid grid = go.GetComponentInParent<Grid>();
+
+                    BoundsInt bounds = tilemap.cellBounds;
+                    TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+                    foreach (Transform prefab in go.transform.Cast<Transform>().ToList()) // help - https://answers.unity.com/questions/605341/why-does-foreach-work-only-12-of-a-time.html
+                    {
+                        bool found = false;
+
+                        for (int x = 0; x < bounds.size.x; x++)
+                        {
+                            if (found) continue;
+
+                            for (int y = 0; y < bounds.size.y; y++)
+                            {
+                                if (found) continue;
+
+                                TileBase tile = allTiles[x + y * bounds.size.x];
+
+                                Vector3Int localPlace = new Vector3Int(x, y, (int)tilemap.transform.position.y);
+                                Vector3 pos = (grid.GetCellCenterWorld(localPlace) + tilemap.localBounds.center) - tilemap.localBounds.size / 2;
+
+                                if (prefab.transform.position == pos)
+                                {
+                                    if (tile == null || tilemap.GetTile(tilemap.WorldToCell(prefab.transform.position)) != grid.gameObject.GetComponent<GridOptions>().TileToReplaceWith)
+                                    {
+                                        DestroyImmediate(prefab.gameObject);
+
+                                        found = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                }
+            else
+            {
+                Debug.LogWarning("You have to select the Tilemap you want to convert.");
+            }
+        }
+
+        private const string automaticTransparentable = "Automatic Transparentable";
+        private static bool enabledAutomaticTransparentable = false;
+
+        static void AutomaticTransparentable()
+        {
+            enabledAutomaticTransparentable = EditorPrefs.GetBool(automaticTransparentable, true);
+        }
+
+        [MenuItem("Tilemaps/" + automaticTransparentable)]
+        private static void ToggleAutomaticTransparentable()
+        {
+            enabledAutomaticTransparentable = !enabledAutomaticTransparentable;
+            EditorPrefs.SetBool(automaticTransparentable, enabledAutomaticTransparentable);
+        }
+
+        [MenuItem("Tilemaps/" + automaticTransparentable, true)]
+        private static bool ToggleAutomaticTransparentableActionValidate()
+        {
+            Menu.SetChecked("Tilemaps/" + automaticTransparentable, enabledAutomaticTransparentable);
+            return true;
         }
     }
 }
+
+// list of block of transparents
