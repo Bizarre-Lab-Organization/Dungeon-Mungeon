@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8300399515206357000}
   - component: {fileID: -4303904238642803460}
   m_Layer: 9
-  m_Name: Wall Prefab
+  m_Name: ScrachedWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

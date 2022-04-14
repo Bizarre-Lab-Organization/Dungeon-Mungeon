@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Tilemaps;
 
 namespace DungeonMungeon
 {
     public class TransparentGroups : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> transparentGroup = new List<GameObject>();
+        [SerializeField] [HideInInspector] private List<GameObject> transparentGroup;
+
+        public List<GameObject> TransparentGroup
+        {
+            get { return transparentGroup; }
+            //set { transparentGroup = value; }
+            set { transparentGroup = new List<GameObject>(value); }
+        }
 
         public void AddToGroup(GameObject gObject)
         {

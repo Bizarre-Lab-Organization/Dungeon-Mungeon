@@ -53,7 +53,7 @@ namespace DungeonMungeon
                         {
                             Vector3 pos = grid.GetCellCenterWorld(tile.position);
 
-                            GameObject til = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Assets/Core/MapMaking/Level_test/Prefabs/Wall Prefab.prefab", typeof(GameObject)) as GameObject) as GameObject;
+                            GameObject til = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Assets/Core/MapMaking/Level_test/Prefabs/ScrachedWall.prefab", typeof(GameObject)) as GameObject) as GameObject;
                             til.transform.parent = tilemap.transform;
                             til.transform.position = pos;
 
@@ -82,6 +82,28 @@ namespace DungeonMungeon
                 } else
                 {
                     Debug.Log("a tile has been swaped wit another (can be plural)");
+
+                    Grid grid = tilemap.transform.parent.GetComponent<Grid>();
+
+                    foreach (var tile in tiles)
+                    {
+                        Vector3 pos = grid.GetCellCenterWorld(tile.position);
+
+                        foreach (Transform prefab in tilemap.transform.Cast<Transform>().ToList())
+                        {
+                            if (prefab.position == pos)
+                            {
+                                TileBase placedTile = tilemap.GetTile(tilemap.WorldToCell(prefab.transform.position));
+
+                                if (placedTile.name != prefab.name)
+                                {
+                                    DestroyImmediate(prefab.gameObject);
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 //Debug.Log("Total amount of tiles (previously): " + previousTilemapCount);

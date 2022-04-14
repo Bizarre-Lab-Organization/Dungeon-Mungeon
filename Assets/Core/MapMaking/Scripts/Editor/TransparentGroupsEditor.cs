@@ -2,41 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 namespace DungeonMungeon
 {
     [CustomEditor(typeof(TransparentGroups))]
     public class TransparentGroupsEditor : Editor
     {
-        //private static List<GameObject> tiles;
-        private static TransparentGroups transparentGroups;
-
+        private static TransparentGroups transparentGroup;
+        
         private void OnEnable()
         {
-            //tiles = new List<GameObject>(TransparentGroups.GetGroup());
-            transparentGroups = (TransparentGroups)target;
+            transparentGroup = (TransparentGroups)target;
         }
-
+        
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            //tiles = TransparentGroups.GetGroup();
 
-            foreach (GameObject tile in transparentGroups.GetGroup())
-            {
-                /*TransparentGroups tileComp = tile.GetComponent<TransparentGroups>();
-
-                transparentGroups.AddToGroup(transparentGroups.gameObject);
-
-                //tileComp.ClearList();
-                tileComp.SetList(transparentGroups.GetGroup());*/
-            }
+            var list = serializedObject.FindProperty("TransparentGroup");
+            //transparentGroup.TransparentGroup = EditorGUILayout.PropertyField(list , new GUIContent("My List Test"), true);
         }
-
+        
         public void OnDestroy()
         {
-            //tiles = null;
-            transparentGroups = null;
+            transparentGroup = null;
         }
     }
 }

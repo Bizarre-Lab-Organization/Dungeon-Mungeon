@@ -7,12 +7,17 @@ namespace DungeonMungeon
 {
     public class GridOptions : MonoBehaviour
     {
-        [SerializeField] private Tile tileToReplaceWith; 
+        [SerializeField] private Tile tileToReplaceWith;
+        [SerializeField] private List<Tile> wallTiles = new List<Tile>();
 
         public Tile TileToReplaceWith
         {
             get { return tileToReplaceWith; }
-            set { tileToReplaceWith = value; }
+        }
+
+        public List<Tile> WallTiles
+        {
+            get { return wallTiles; }
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 namespace DungeonMungeon
 {
@@ -11,7 +12,6 @@ namespace DungeonMungeon
         [SerializeField] private GameObject camera;
 
         private GameObject currentObject = null;
-        private bool isCurrentlyTransparent = false;
 
         private void Start()
         {
@@ -30,12 +30,16 @@ namespace DungeonMungeon
                     
                 if (collidedObject.layer == 9)
                 {
-                    if (currentObject == null)
+                    if (currentObject == null && !asd(collidedObject).Contains(collidedObject))
                     {
                         currentObject = collidedObject;
                         currentObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
 
-                        isCurrentlyTransparent = true;
+                        foreach (GameObject prefab in asd(currentObject))
+                        {
+                            currentObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                        }
+
                     } else if (!collidedObject.Equals(currentObject))
                     {
                         currentObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -54,6 +58,50 @@ namespace DungeonMungeon
                 currentObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 currentObject = null;
             }
+        }
+
+        private List<GameObject> asd(GameObject go)
+        {
+            List<GameObject> coll = new List<GameObject>();
+
+            Tilemap tilemap = go.transform.parent.GetComponent<Tilemap>();
+            Grid grid = go.transform.parent.parent.GetComponentInParent<Grid>();
+
+            BoundsInt bounds = tilemap.cellBounds;
+            TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+            List<GameObject> goTiles = new List<GameObject>();
+
+            for (int y = 0; y < bounds.size.y; y++)
+            {
+                for (int x = 0; x < bounds.size.x; x++)
+                {
+                    TileBase tile = allTiles[x + y * bounds.size.x];
+                    Vector3Int localPlace = new Vector3Int(x, y, (int)tilemap.transform.position.y);
+                    Vector3 pos = (grid.GetCellCenterWorld(localPlace) + tilemap.localBounds.center) - tilemap.localBounds.size / 2;
+
+                    if (tile != null)
+                    {
+                        foreach (Transform prefab in go.transform.parent.transform.Cast<Transform>().ToList())
+                        {
+                            if (prefab.transform.position == pos)
+                            {
+                                goTiles.Add(prefab.gameObject);
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (GameObject prefab in goTiles)
+            {
+                if (prefab.transform.position.y == go.transform.position.y)
+                {
+                    coll.Add(prefab);
+                }
+            }
+
+            return coll;
         }
 
         /*private void OnCollisionEnter2D(Collision2D collision)
