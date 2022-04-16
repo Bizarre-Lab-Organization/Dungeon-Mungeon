@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace DungeonMungeon
 {
-    public class EnemyManager : MonoBehaviour
+    public class interactableOptions : MonoBehaviour
     {
+        public enum Type {Button, Door, Item};
+        public Type _type;
         // Start is called before the first frame update
         void Start()
         {
