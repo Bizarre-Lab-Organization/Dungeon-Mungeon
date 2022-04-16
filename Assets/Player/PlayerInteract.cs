@@ -59,11 +59,11 @@ namespace DungeonMungeon
                 {
                     interactText.text = "Push Button";
                 }
-                if (options.Equals(Type.Door))
+                else if (options.Equals(Type.Door))
                 {
                     interactText.text = "Open/Close Door";
                 }
-                if (options.Equals(Type.Item))
+                else if (options.Equals(Type.Item))
                 {
                     interactText.text = "Pickup " + bestTarget.name;
                 }
