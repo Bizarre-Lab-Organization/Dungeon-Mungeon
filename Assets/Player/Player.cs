@@ -14,6 +14,12 @@ namespace DungeonMungeon
             _rb = GetComponent<Rigidbody2D>();
         }
 
+        private void Start()
+        {
+            _camera.orthographicSize = transform.localScale.z * 4;
+            _speed = transform.localScale.z * 150;
+        }
+
         void Update()
         {
             float inputX = Input.GetAxisRaw("Horizontal");
@@ -26,6 +32,14 @@ namespace DungeonMungeon
         private void FixedUpdate()
         {
             _rb.velocity = _moveDir * _speed * Time.deltaTime;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == 6)
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

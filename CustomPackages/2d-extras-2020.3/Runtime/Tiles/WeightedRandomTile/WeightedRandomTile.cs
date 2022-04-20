@@ -20,6 +20,8 @@ namespace UnityEngine.Tilemaps
         /// Weight of the Sprite.
         /// </summary>
         public int Weight;
+
+        public bool RandomRotation;
     }
 
     /// <summary>
@@ -122,6 +124,7 @@ namespace UnityEngine.Tilemaps
             {
                 Tile.Sprites[i].Sprite = (Sprite) EditorGUILayout.ObjectField("Sprite " + (i + 1), Tile.Sprites[i].Sprite, typeof(Sprite), false, null);
                 Tile.Sprites[i].Weight = EditorGUILayout.IntField("Weight " + (i + 1), Tile.Sprites[i].Weight);
+                Tile.Sprites[i].RandomRotation = EditorGUILayout.Toggle("Random Rotation " + (i + 1), Tile.Sprites[i].RandomRotation);
             }
 
             EditorGUILayout.Space();
