@@ -10,15 +10,16 @@ namespace DungeonMungeon
         [SerializeField] private Animator _animator;
         [SerializeField] private int _transitionDuration;
 
-        public void LoadNextLevel() => StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        public void LoadNextLevel() => StartCoroutine(LoadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
+        public void LoadLevel(int buildIndex) => StartCoroutine(LoadLevelCoroutine(buildIndex));
 
-        private IEnumerator LoadLevel(int levelIndex)
+        private IEnumerator LoadLevelCoroutine(int levelIndex)
         {
             _animator.SetTrigger("StartFade");
 
             yield return new WaitForSeconds(_transitionDuration);
 
-            SceneLoader.LoadLevel(levelIndex);
+            SceneManager.LoadScene(levelIndex);
             _animator.Rebind();
         }
 
