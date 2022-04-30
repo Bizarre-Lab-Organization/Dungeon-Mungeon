@@ -6,13 +6,14 @@ using System.Collections.Generic;
 namespace DungeonMungeon 
 {
     [InitializeOnLoad]
-    class AddInteractableComponent : Editor
+    [CustomEditor(typeof(InteractableOptions))]
+    class InteracatbleOptionsEditor : Editor
     {
         static int lastLayer;
         static int currentLayer;
         static Transform go; 
         static Transform prevgo;
-        static AddInteractableComponent()
+        static InteracatbleOptionsEditor()
         {
             EditorApplication.update += Update;
         }
@@ -24,10 +25,10 @@ namespace DungeonMungeon
             try
             {
                 lastLayer = currentLayer;
-            }
-            catch { };
             go = Selection.activeTransform;
             currentLayer = go.gameObject.layer;
+            }
+            catch { };
 
             if(go == null)
             {
@@ -35,13 +36,13 @@ namespace DungeonMungeon
             }
             if (lastLayer != currentLayer)
             {
-                if (go.gameObject.layer == 7 && go.GetComponent<interactableOptions>() == null)
+                if (go.gameObject.layer == 7 && go.GetComponent<InteractableOptions>() == null)
                 {
-                    go.gameObject.AddComponent<interactableOptions>();
+                    go.gameObject.AddComponent<InteractableOptions>();
                 }
-                else if (go.gameObject.layer != 7 && go.GetComponent<interactableOptions>() != null)
+                else if (go.gameObject.layer != 7 && go.GetComponent<InteractableOptions>() != null)
                 {
-                    DestroyImmediate(go.GetComponent<interactableOptions>());
+                    DestroyImmediate(go.GetComponent<InteractableOptions>());
                 }
             }
 

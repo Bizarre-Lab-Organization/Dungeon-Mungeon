@@ -4,20 +4,38 @@ using UnityEngine;
 
 namespace DungeonMungeon
 {
-    public class interactableOptions : MonoBehaviour
+    public class InteractableOptions : MonoBehaviour
     {
-        public enum Type {Button, Door, Item};
-        public Type _type;
-        // Start is called before the first frame update
-        void Start()
+        public delegate void ExecuteInteractable(Transform target);
+        public static event ExecuteInteractable Execute;
+        public enum Type { Button, Door, Item };
+        [SerializeField] private Type _type;
+
+        private void OnEnable()
         {
-        
+            PlayerInteract.OnInteract += ExecuteFunctionality;
+        }
+        private void OnDisable()
+        {
+            PlayerInteract.OnInteract -= ExecuteFunctionality;
+        }
+        public Type Typer
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+        void ExecuteFunctionality(Transform target)
+        {
+
+            if (target.gameObject == gameObject)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if(Execute != null)
+                    Execute(target);
+                }
+            }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

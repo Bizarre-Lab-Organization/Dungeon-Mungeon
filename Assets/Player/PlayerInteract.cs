@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 namespace DungeonMungeon
 {
-    public class PlayerInteract : interactableOptions
+    public class PlayerInteract : MonoBehaviour
     {
+        public delegate void InteractableAction(Transform target);
+        public static event InteractableAction OnInteract;
+
         public float interactRange;
         Transform bestTarget = new GameObject().transform;
         Transform prevBestTarget = new GameObject().transform;
@@ -14,7 +17,7 @@ namespace DungeonMungeon
         [SerializeField] Text interactText;
         public Material outliners;
         public Material defaultSprite;
-        private Type options;
+        private InteractableOptions.Type options;
         void Awake()
         {
             interactableLayers = LayerMask.GetMask("Interactables");
@@ -54,16 +57,16 @@ namespace DungeonMungeon
             if (bestTarget != null)
             {
                 interactText.enabled = true;
-                options = bestTarget.GetComponent<interactableOptions>()._type;
-                if (options.Equals(Type.Button))
+                options = bestTarget.GetComponent<InteractableOptions>().Typer;
+                if (options.Equals(InteractableOptions.Type.Button))
                 {
                     interactText.text = "Push Button";
                 }
-                else if (options.Equals(Type.Door))
+                else if (options.Equals(InteractableOptions.Type.Door))
                 {
                     interactText.text = "Open/Close Door";
                 }
-                else if (options.Equals(Type.Item))
+                else if (options.Equals(InteractableOptions.Type.Item))
                 {
                     interactText.text = "Pickup " + bestTarget.name;
                 }
@@ -71,6 +74,8 @@ namespace DungeonMungeon
                 //interactText.text = "Interact with " + bestTarget.name;
                 Debug.Log(bestTarget.name);
                 bestTarget.GetComponent<SpriteRenderer>().material = outliners;
+                if(OnInteract != null)
+                OnInteract(bestTarget);
             }
             else
             {
