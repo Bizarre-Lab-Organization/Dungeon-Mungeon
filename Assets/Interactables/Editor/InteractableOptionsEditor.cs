@@ -87,7 +87,6 @@ namespace DungeonMungeon
         {
             if(interactableOptions == null)
             {
-                Debug.Log("kgoa se vika");
                 DestroyImmediate(CheckType(previousType));
             }
         }

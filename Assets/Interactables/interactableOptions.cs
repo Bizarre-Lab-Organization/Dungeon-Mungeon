@@ -26,10 +26,9 @@ namespace DungeonMungeon
         }
         void ExecuteFunctionality(Transform target)
         {
-
-            if (target.gameObject == gameObject)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (target.gameObject == gameObject)
                 {
                     if(Execute != null)
                     Execute(target);
