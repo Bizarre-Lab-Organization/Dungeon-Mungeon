@@ -6,8 +6,7 @@ namespace DungeonMungeon
 {
     public class InteractableOptions : MonoBehaviour
     {
-        public delegate void ExecuteInteractable(Transform target);
-        public static event ExecuteInteractable Execute;
+        public static event EventManager.InteractableEvent Execute;
         public enum Type { Button, Door, Item };
         [SerializeField] private Type _type;
 

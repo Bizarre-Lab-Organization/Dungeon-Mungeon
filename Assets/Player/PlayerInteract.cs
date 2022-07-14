@@ -7,8 +7,8 @@ namespace DungeonMungeon
 {
     public class PlayerInteract : MonoBehaviour
     {
-        public delegate void InteractableAction(Transform target);
-        public static event InteractableAction OnInteract;
+        
+        public static event EventManager.InteractableEvent OnInteract;
 
         public float interactRange;
         Transform bestTarget = new GameObject().transform;
