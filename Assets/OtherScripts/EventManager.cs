@@ -7,5 +7,6 @@ namespace DungeonMungeon
     public class EventManager : MonoBehaviour
     {
         public delegate void InteractableEvent(Transform target);
+        public delegate void SetSpeed(float speed);
     }
 }
