@@ -1,117 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 namespace DungeonMungeon
 {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField] private bool _passive = false;
-        [SerializeField] private bool _ranged = false;
-        [SerializeField] private float _range = 5;
-        [SerializeField] private float _rangeOn = 5, _rangeOff = 5;
+        [Header("Type")]
+        [SerializeField] private bool _passive; // if not passive - hostile
+        [SerializeField] [HideInInspector] private float _rangeStart; // when hostile
+        [SerializeField] [HideInInspector] private float _rangeEnd;
         
-        private bool _inRange = false; 
+        [SerializeField] private bool _ranged; // if not ranged - melee
+        [SerializeField] [HideInInspector] private float _rangeToStayAt;
 
-
-        private float _distance, x, y;
+        [Header("Common")]
+        [SerializeField] private float _speed;
         [SerializeField] private Transform _target;
-        [SerializeField] private float _speed = 300f;
-        [SerializeField] private float _nextWaypointDistance = 3f;
 
-        Path path;
-        int currentWaypoint = 0;
-        bool reachedEndOfPath = false;
-
-        private Seeker _seeker;
-        private Rigidbody2D _rb; 
-
-        void Start()
+        public bool Passive
         {
-            _seeker = GetComponent<Seeker>();
-            _rb = GetComponent<Rigidbody2D>();
-
-            InvokeRepeating("UpdatePath", 0f, 0.5f);
-            _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
+            get { return _passive; }
+            set { _passive = value; }
         }
 
-        void FixedUpdate(){
-            if(!_passive){
-                if(_inRange){
-                    MovementAI();
-                }
-                DistanceTrigger();
-            }
-        }
-
-
-        void MovementAI(){
-            if (path == null) return;
-
-            if(currentWaypoint >= path.vectorPath.Count)
-            {
-                reachedEndOfPath = true;
-                return;
-            }else
-            {
-                reachedEndOfPath = false;
-            }
-
-            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - _rb.position).normalized;
-            _rb.velocity = direction * _speed * Time.deltaTime;
-
-            float distance = Vector2.Distance(_rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < _nextWaypointDistance)
-            {
-                currentWaypoint++;
-            }
-        }
-
-        void OnPathComplete(Path p)
+        public float RangeStart
         {
-            if(!p.error)
-            {
-                path = p;
-                currentWaypoint = 0;
-            }
+            get { return _rangeStart; }
+            set { _rangeStart = value; }
         }
 
-        void UpdatePath(){
-            if (_seeker.IsDone()) _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
+        public float RangeEnd
+        {
+            get { return _rangeEnd; }
+            set { _rangeEnd = value; }
         }
 
-
-        private void OnCollisionEnter2D(Collision2D collision) {
-            if(collision.gameObject.tag == "Player" && _passive){
-                _passive = false;
-            }
+        public bool Ranged
+        {
+            get { return _ranged; }
+            set { _ranged = value; }
         }
 
-
-
-
-        void DistanceTrigger(){
-            x = Mathf.Abs(_target.transform.position.x - _rb.transform.position.x);
-            y = Mathf.Abs(_target.transform.position.y - _rb.transform.position.y);
-            _distance = Mathf.Sqrt(x*x + y+y);
-
-            Trigger();
-            Untrigger();
+        public float RangeToStayAt
+        {
+            get { return _rangeToStayAt; }
+            set { _rangeToStayAt = value; }
         }
 
-        void Trigger(){
-            if(_distance <= _rangeOn){
-                _inRange = true;
-            }
+        public float Speed
+        {
+            get { return _speed; }
+            set { _speed = value; }
         }
 
-        void Untrigger(){
-            if(_distance >= _rangeOff){
-                _inRange = false;
-                _rb.velocity = Vector2.zero;
-            }
+        public Transform Target
+        {
+            get { return _target; }
+            set { _target = value; }
         }
     }
 }
