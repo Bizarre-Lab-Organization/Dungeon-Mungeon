@@ -11,8 +11,8 @@ namespace DungeonMungeon
         public static event EventManager.InteractableEvent OnInteract;
 
         public float interactRange;
-        Transform bestTarget = new GameObject().transform;
-        Transform prevBestTarget = new GameObject().transform;
+        Transform bestTarget;
+        Transform prevBestTarget;
         private LayerMask interactableLayers;
         [SerializeField] Text interactText;
         public Material outliners;
@@ -49,6 +49,7 @@ namespace DungeonMungeon
             }
             if (bestTarget == null && prevBestTarget == null) return;
 
+            if (prevBestTarget == null) return;
 
             if (!prevBestTarget.Equals(bestTarget))
             {
