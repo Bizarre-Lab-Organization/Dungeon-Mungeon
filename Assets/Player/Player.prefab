@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 611182369604720210}
   - component: {fileID: 611182369604720214}
   - component: {fileID: 611182369604720237}
-  - component: {fileID: 611182369604720215}
+  - component: {fileID: 2070605516012360484}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,7 +157,7 @@ MonoBehaviour:
   interactText: {fileID: 0}
   outliners: {fileID: 2100000, guid: 5a6db85ebb9466f4b90af9ebdd3c4fdc, type: 2}
   defaultSprite: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &611182369604720215
+--- !u!114 &2070605516012360484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 611182369604720236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1270ea9334291a240a910fb4240d4a4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 05875e3651b894b4a95959b30a38d0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origSpeed: 400

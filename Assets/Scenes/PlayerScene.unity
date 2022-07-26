@@ -1172,5 +1172,6 @@ PrefabInstance:
       propertyPath: interactText
       value: 
       objectReference: {fileID: 249152519}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 611182369604720215, guid: bef55cb5159dbb74181fc405902db002, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bef55cb5159dbb74181fc405902db002, type: 3}
