@@ -15,7 +15,6 @@ namespace DungeonMungeon
         private float timeTillAttack;
 
         [SerializeField] private float knockbackStrenght;
-        //[SerializeField] private float knockTime;
         void Awake()
         {
             enemyLayers = LayerMask.GetMask("Enemy");
@@ -24,7 +23,6 @@ namespace DungeonMungeon
 
         void Update()
         {
-            //Debug.Log(timeTillAttack);
             if(timeTillAttack > 0) 
             {
                 timeTillAttack -= Time.deltaTime;
@@ -47,7 +45,6 @@ namespace DungeonMungeon
             foreach (Collider2D enemy in enemiesHit)
             {
                 Debug.Log("Hit " + enemy.name);
-                // Destroy(enemy.gameObject);
                 AddKnockback(knockbackStrenght, enemy.gameObject);
             }
         }
@@ -62,38 +59,18 @@ namespace DungeonMungeon
                 Vector2 difference = target.transform.position - transform.position;
                 difference = difference.normalized * strenght;
                 rb.AddForce(difference, ForceMode2D.Impulse);
-                //StartCoroutine(KnockCo(rb));
                 StartCoroutine(SlowOverTime(rb));
                  
             }
         }
-
-        /*private IEnumerator KnockCo(Rigidbody2D rb)
-        {
-            if(rb != null)
-            {
-                yield return new WaitForSeconds(knockTime);
-                rb.velocity = Vector2.zero;
-                rb.isKinematic = true;
-            }
-        }*/
         private IEnumerator SlowOverTime(Rigidbody2D rb)
         {
-            /*velo.x = Mathf.Abs(velo.x);
-            velo.y = Mathf.Abs(velo.y);*/
             while (!rb.velocity.Equals(new Vector2(0, 0))) 
             {
                 if (rb.velocity.x > 0 && rb.velocity.x < 0.09f) rb.velocity = new Vector2(0, rb.velocity.y);
                 if (rb.velocity.y < 0.09f && rb.velocity.y > 0) rb.velocity = new Vector2(rb.velocity.x,0);
                 if (rb.velocity.x > -0.09f && rb.velocity.x < 0) rb.velocity = new Vector2(0,rb.velocity.y);
                 if (rb.velocity.y > -0.09f && rb.velocity.y < 0) rb.velocity = new Vector2(rb.velocity.x,0);
-
-                /* velo.x--;
-                 velo.x = Mathf.Clamp(velo.x, 0, Mathf.Infinity);
-                 velo.y--;
-                 velo.y = Mathf.Clamp(velo.y, 0, Mathf.Infinity);
-                 Debug.Log(rb.velocity);
-                 Debug.Log(velo);*/
 
                 rb.velocity /= 1.0667f;
 

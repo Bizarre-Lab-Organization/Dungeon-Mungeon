@@ -17,10 +17,6 @@ namespace DungeonMungeon
             v3Pos = Quaternion.AngleAxis(angle, Vector3.forward) * (Vector3.right * fRadius);
             transform.position = target.position + v3Pos;
         }
-       /* private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(target.position, fRadius);
-        }*/
     }
 }
 

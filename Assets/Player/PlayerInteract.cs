@@ -71,8 +71,6 @@ namespace DungeonMungeon
                 {
                     interactText.text = "Pickup " + bestTarget.name;
                 }
-                //Debug.Log(options);
-                //interactText.text = "Interact with " + bestTarget.name;
                 Debug.Log(bestTarget.name);
                 bestTarget.GetComponent<SpriteRenderer>().material = outliners;
                 if(OnInteract != null)
