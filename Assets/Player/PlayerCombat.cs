@@ -74,7 +74,7 @@ namespace DungeonMungeon
 
                 rb.velocity /= 1.0667f;
 
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
                 
             }
 
