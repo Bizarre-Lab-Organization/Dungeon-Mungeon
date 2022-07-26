@@ -75,8 +75,6 @@ namespace DungeonMungeon
             if (d > _range - 0.5 && d < _range + 0.5){
                 _rb.velocity = Vector2.zero;
             }
-
-            //Debug.Log(_target.position);
         }
 
 

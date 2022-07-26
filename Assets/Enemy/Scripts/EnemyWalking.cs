@@ -60,8 +60,6 @@ namespace DungeonMungeon
             {
                 currentWaypoint++;
             }
-
-            //Debug.Log(_target.position);
         }
 
 
