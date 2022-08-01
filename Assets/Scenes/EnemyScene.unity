@@ -137,8 +137,8 @@ GameObject:
   - component: {fileID: 149590516}
   - component: {fileID: 149590521}
   - component: {fileID: 149590515}
-  - component: {fileID: 149590522}
   - component: {fileID: 149590518}
+  - component: {fileID: 149590522}
   m_Layer: 0
   m_Name: Passive
   m_TagString: Enemy
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 149590514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Script: {fileID: 11500000, guid: c5932c6b3ca35414ca29701d07f8fc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _passive: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 149590514}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
+  m_Script: {fileID: 11500000, guid: 23933c667cba2c84a8920dfc6f39d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -460,6 +461,39 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -534,7 +568,6 @@ GameObject:
   - component: {fileID: 525144268}
   - component: {fileID: 525144266}
   - component: {fileID: 525144269}
-  - component: {fileID: 525144270}
   m_Layer: 0
   m_Name: Hostile
   m_TagString: Enemy
@@ -551,7 +584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 525144260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Script: {fileID: 11500000, guid: c5932c6b3ca35414ca29701d07f8fc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _passive: 0
@@ -739,21 +772,6 @@ MonoBehaviour:
   _cooldown: 4
   _timeInAir: 5
   _target: {fileID: 874841570}
---- !u!114 &525144270
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525144260}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 0}
-  _speed: 300
-  _nextWaypointDistance: 3
 --- !u!1 &874841566
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,11 +801,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 874841566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c10cf0fe30589e449d7832f8870537d, type: 3}
+  m_Script: {fileID: 11500000, guid: 05875e3651b894b4a95959b30a38d0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 500
+  origSpeed: 500
   _camera: {fileID: 519420031}
+  moveCooldown: 0
 --- !u!70 &874841568
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1131,9 +1150,9 @@ GameObject:
   - component: {fileID: 1884876715}
   - component: {fileID: 1884876720}
   - component: {fileID: 1884876714}
-  - component: {fileID: 1884876721}
   - component: {fileID: 1884876717}
   - component: {fileID: 1884876722}
+  - component: {fileID: 1884876721}
   m_Layer: 0
   m_Name: Ranged Hostile
   m_TagString: Enemy
@@ -1150,7 +1169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884876713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Script: {fileID: 11500000, guid: c5932c6b3ca35414ca29701d07f8fc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _passive: 0
@@ -1314,7 +1333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884876713}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98a2b1b6c26b0844bb948a0db9a52b99, type: 3}
+  m_Script: {fileID: 11500000, guid: 23933c667cba2c84a8920dfc6f39d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
