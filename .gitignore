@@ -58,3 +58,104 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/Core.meta
+Assets/Gameplay.meta
+Assets/hit.prefab
+Assets/hit.prefab.meta
+Assets/Packages.meta
+Assets/Perspective.prefab
+Assets/Perspective.prefab.meta
+Assets/TeakableEditor.cs
+Assets/TeakableEditor.cs.meta
+Assets/Core/MapMaking.meta
+Assets/Core/MapMaking/Level_test.meta
+Assets/Core/MapMaking/Level_test/Palettes.meta
+Assets/Core/MapMaking/Level_test/Textures.meta
+Assets/Core/MapMaking/Level_test/Tiles.meta
+Assets/Core/MapMaking/Level_test/Palettes/Ground.prefab
+Assets/Core/MapMaking/Level_test/Palettes/Ground.prefab.meta
+Assets/Core/MapMaking/Level_test/Palettes/Walls.prefab
+Assets/Core/MapMaking/Level_test/Palettes/Walls.prefab.meta
+Assets/Core/MapMaking/Level_test/Textures/Ground.meta
+Assets/Core/MapMaking/Level_test/Textures/Walls.meta
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground.png
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground.png.meta
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground_texture.png
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground_texture.png.meta
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground2.png
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground2.png.meta
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground3.png
+Assets/Core/MapMaking/Level_test/Textures/Ground/ground3.png.meta
+Assets/Core/MapMaking/Level_test/Textures/Walls/wallus.png
+Assets/Core/MapMaking/Level_test/Textures/Walls/wallus.png.meta
+Assets/Core/MapMaking/Level_test/Tiles/Ground.meta
+Assets/Core/MapMaking/Level_test/Tiles/Walls.meta
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground.asset
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground.asset.meta
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground_texture.asset
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground_texture.asset.meta
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground2.asset
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground2.asset.meta
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground3.asset
+Assets/Core/MapMaking/Level_test/Tiles/Ground/ground3.asset.meta
+Assets/Core/MapMaking/Level_test/Tiles/Walls/wallus.asset
+Assets/Core/MapMaking/Level_test/Tiles/Walls/wallus.asset.meta
+Assets/Enemy/Scripts.meta
+Assets/Enemy/Scripts/EnemyEditor.cs
+Assets/Enemy/Scripts/EnemyEditor.cs.meta
+Assets/Enemy/Scripts/EnemyManager.cs
+Assets/Enemy/Scripts/EnemyManager.cs.meta
+Assets/Enemy/Scripts/SubScripts.meta
+Assets/Enemy/Scripts/SubScripts/EnemyMelee.cs
+Assets/Enemy/Scripts/SubScripts/EnemyMelee.cs.meta
+Assets/Enemy/Scripts/SubScripts/EnemyRange.cs
+Assets/Enemy/Scripts/SubScripts/EnemyRange.cs.meta
+Assets/Enemy/Scripts/SubScripts/EnemyRanged.cs
+Assets/Enemy/Scripts/SubScripts/EnemyRanged.cs.meta
+Assets/Enemy/Scripts/SubScripts/EnemyTrigger.cs
+Assets/Enemy/Scripts/SubScripts/EnemyTrigger.cs.meta
+Assets/Gameplay/Player.meta
+Assets/Gameplay/Player/PlayerManager.cs
+Assets/Gameplay/Player/PlayerManager.cs.meta
+Assets/Gameplay/Player/Textures.meta
+Assets/Gameplay/Player/Textures/Character.png
+Assets/Gameplay/Player/Textures/Character.png.meta
+Assets/Packages/Custom 2D Colliders.meta
+Assets/Packages/Custom 2D Colliders/Scripts.meta
+Assets/Packages/Custom 2D Colliders/Scripts/ArcCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/ArcCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/BezierCurveCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/BezierCurveCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/CapsuleCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/CapsuleCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor.meta
+Assets/Packages/Custom 2D Colliders/Scripts/EllipseCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/EllipseCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/RoundedBoxCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/RoundedBoxCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/StarCollider2D.cs
+Assets/Packages/Custom 2D Colliders/Scripts/StarCollider2D.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/ArcCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/ArcCollider2D_Editor.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/BezierCurveCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/BezierCurveCollider2D_Editor.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/CapsuleCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/CapsuleCollider2D_Editor.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/EllipseCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/EllipseCollider2D_Editor.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/RoundedBoxCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/RoundedBoxCollider2D_Editor.cs.meta
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/StarCollider2D_Editor.cs
+Assets/Packages/Custom 2D Colliders/Scripts/Editor/StarCollider2D_Editor.cs.meta
+Assets/Player/Player.cs
+Assets/Player/Player.cs.meta
+Assets/Player/PlayerEditor.cs
+Assets/Player/PlayerEditor.cs.meta
+Assets/Player/PlayerMovement.cs
+Assets/Player/PlayerMovement.cs.meta
+Assets/Player/Useless shit.cs
+Assets/Player/Useless shit.cs.meta
+Assets/Player/Uselessshit.cs
+Assets/Player/Uselessshit.cs.meta
+Assets/UI/Prompt.png
+Assets/UI/Prompt.png.meta
