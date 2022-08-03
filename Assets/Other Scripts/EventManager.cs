@@ -8,5 +8,6 @@ namespace DungeonMungeon
     {
         public delegate void InteractableEvent(Transform target);
         public delegate void SetSpeed(float speed);
-        public delegate void DamageTransfer(int damage);    }
+        public delegate void DamageTransfer(int damage, GameObject target);    
+    }
 }
