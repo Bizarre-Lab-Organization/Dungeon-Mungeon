@@ -202,6 +202,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249152517}
   m_CullTransparentMesh: 1
+--- !u!1 &263413892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 611182369604720236, guid: bef55cb5159dbb74181fc405902db002, type: 3}
+  m_PrefabInstance: {fileID: 611182370478904242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &263413899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263413892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cc99db59037cd41bae8b5d4e1faaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
 --- !u!1 &359937558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 611182369604720214, guid: bef55cb5159dbb74181fc405902db002, type: 3}
+      propertyPath: attackCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 611182369604720215, guid: bef55cb5159dbb74181fc405902db002, type: 3}
       propertyPath: _camera
       value: 
@@ -1176,6 +1198,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2070605516012360484, guid: bef55cb5159dbb74181fc405902db002, type: 3}
+      propertyPath: moveCooldown
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 611182369604720215, guid: bef55cb5159dbb74181fc405902db002, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bef55cb5159dbb74181fc405902db002, type: 3}
