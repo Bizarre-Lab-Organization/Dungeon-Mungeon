@@ -220,6 +220,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+--- !u!4 &263413900 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 611182369604720208, guid: bef55cb5159dbb74181fc405902db002, type: 3}
+  m_PrefabInstance: {fileID: 611182370478904242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &359937558
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +446,12 @@ GameObject:
   - component: {fileID: 500195965}
   - component: {fileID: 500195964}
   - component: {fileID: 500195967}
+  - component: {fileID: 500195973}
+  - component: {fileID: 500195972}
+  - component: {fileID: 500195970}
+  - component: {fileID: 500195969}
+  - component: {fileID: 500195971}
+  - component: {fileID: 500195968}
   m_Layer: 6
   m_Name: KnockBackTestDummy
   m_TagString: Untagged
@@ -560,6 +571,112 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &500195968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3600fb08ada12f24f9b5831cad567ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 263413900}
+  _attackRange: 3
+  _attackCooldown: 3
+--- !u!114 &500195969
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc36c14a8db4664e8639164e93d61ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeOn: 0
+  _rangeOff: 0
+  _player: {fileID: 0}
+--- !u!114 &500195970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47faa00caffef6c47bc17e75328ed081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnemyHP: 0
+--- !u!114 &500195971
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23933c667cba2c84a8920dfc6f39d309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _speed: 300
+  _nextWaypointDistance: 3
+--- !u!114 &500195972
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &500195973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500195963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809fe0bd1b8f9e247b5595037a65b2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _passive: 0
+  _rangeStart: 10
+  _rangeEnd: 20
+  _ranged: 0
+  _rangeToStayAt: 2
+  _chasingCooldown: 1
+  _speed: 300
+  _target: {fileID: 263413900}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

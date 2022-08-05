@@ -17,10 +17,13 @@ namespace DungeonMungeon
         private static Seeker seeker;
         private static EnemyTrigger enemyTrigger;
         private static EnemyPassive enemyPassive;
+        private static EnemyFightMelee enemyFightMelee;
+        private static EnemyFightRanged enemyFightRanged;
+        private static EnemyHealth enemyHealth; 
 
         private static bool foldRanged = true;
         private static bool foldHostile = true;
-        // Start is called before the first frame update
+
 
         private void OnEnable() {
             if (enemyManager != null) return;
@@ -46,6 +49,15 @@ namespace DungeonMungeon
             else
             {
                 enemyWalking = enemyManager.GetComponent<EnemyWalking>();
+            }
+
+            if (enemyManager.GetComponent<EnemyHealth>() == null)
+            {
+                enemyHealth = enemyManager.gameObject.AddComponent<EnemyHealth>();
+            }
+            else
+            {
+                enemyHealth = enemyManager.GetComponent<EnemyHealth>();
             }
 
             Repaint();
@@ -95,8 +107,11 @@ namespace DungeonMungeon
             if (enemyManager.Ranged)
             {
                 enemyWalking = enemyManager.GetComponent<EnemyWalking>();
+                enemyFightMelee = enemyManager.GetComponent<EnemyFightMelee>();
                 DestroyImmediate(enemyWalking);
+                DestroyImmediate(enemyFightMelee);
 
+                enemyFightMelee = null;
                 enemyWalking = null;
 
                 if (enemyManager.GetComponent<EnemyRanged>() == null)
@@ -109,7 +124,46 @@ namespace DungeonMungeon
                 {
                     enemyRanged = enemyManager.GetComponent<EnemyRanged>();
                 }
+
+
+                if (enemyManager.GetComponent<EnemyFightRanged>() == null){
+                    enemyFightRanged = enemyManager.gameObject.AddComponent<EnemyFightRanged>();
+                }
+                else
+                {
+                    enemyFightRanged = enemyManager.GetComponent<EnemyFightRanged>();
+                }
             }
+            else
+            {
+                enemyRanged = enemyManager.GetComponent<EnemyRanged>();
+                enemyFightRanged = enemyManager.GetComponent<EnemyFightRanged>();
+                DestroyImmediate(enemyRanged);
+                DestroyImmediate(enemyFightRanged);
+
+                enemyRanged = null;
+                enemyFightRanged = null;
+
+                if (enemyManager.GetComponent<EnemyWalking>() == null)
+                {
+                    enemyWalking = enemyManager.gameObject.AddComponent<EnemyWalking>();
+                    enemyWalking.enabled = false;
+                    enemyWalking.hideFlags = HideFlags.HideInInspector;
+                }
+                else
+                {
+                    enemyWalking = enemyManager.GetComponent<EnemyWalking>();
+                }
+
+                if (enemyManager.GetComponent<EnemyFightMelee>() == null){
+                    enemyFightMelee = enemyManager.gameObject.AddComponent<EnemyFightMelee>();
+                }
+                else
+                {
+                    enemyFightMelee = enemyManager.GetComponent<EnemyFightMelee>();
+                }
+            }
+
 
 
 
@@ -145,6 +199,9 @@ namespace DungeonMungeon
                 DestroyImmediate(enemyTrigger);
                 DestroyImmediate(enemyPassive);
                 DestroyImmediate(enemyRanged);
+                DestroyImmediate(enemyFightRanged);
+                DestroyImmediate(enemyFightMelee);
+                DestroyImmediate(enemyHealth);
             }
 
             enemyManager = null;
@@ -153,6 +210,9 @@ namespace DungeonMungeon
             enemyTrigger = null;
             enemyPassive = null;
             enemyRanged = null;
+            enemyFightMelee = null;
+            enemyFightRanged = null;
+            enemyHealth = null;
 
             Repaint();
         }

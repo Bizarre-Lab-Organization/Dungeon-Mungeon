@@ -6,6 +6,7 @@ namespace DungeonMungeon
 {
     public class EnemyFightRanged : MonoBehaviour
     {
+        private EnemyManager enemyManager;
         [SerializeField] private GameObject _bullet;
         [SerializeField] private float _speed;
         [SerializeField] private float _cooldown;
@@ -20,7 +21,9 @@ namespace DungeonMungeon
 
         void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>(); 
+            enemyManager = GetComponent<EnemyManager>();
+            _rb = GetComponent<Rigidbody2D>();
+            _target = enemyManager.Target;
         }
 
         void FixedUpdate()

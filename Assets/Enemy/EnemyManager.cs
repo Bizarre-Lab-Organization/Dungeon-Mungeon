@@ -12,7 +12,9 @@ namespace DungeonMungeon
         [SerializeField] [HideInInspector] private float _rangeEnd;
         
         [SerializeField] private bool _ranged; // if not ranged - melee
-        [SerializeField] [HideInInspector] private float _rangeToStayAt;
+        [SerializeField] private float _rangeToStayAt;
+        [SerializeField] private float _chasingCooldown;
+
 
         [Header("Common")]
         [SerializeField] private float _speed;
@@ -46,6 +48,12 @@ namespace DungeonMungeon
         {
             get { return _rangeToStayAt; }
             set { _rangeToStayAt = value; }
+        }
+
+        public float ChasingCooldown
+        {
+            get { return _chasingCooldown; }
+            set { _chasingCooldown = value; }
         }
 
         public float Speed

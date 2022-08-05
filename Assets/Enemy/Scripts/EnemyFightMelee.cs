@@ -10,38 +10,48 @@ namespace DungeonMungeon
         [SerializeField] private Transform _target;
         private Rigidbody2D _rb;
 
-        [SerializeField] private float _range = 1;
-        [SerializeField] private float _cooldown = 3;
-        private float _time = 0;
+        [SerializeField] private float _attackRange = 1;
+        [SerializeField] private float _attackCooldown = 3;
+
+        
+        private float _AtTime = 0;
+
+
+        float x, y, _distance;
 
         void Awake()
         {
+            enemyManager = GetComponent<EnemyManager>();
             _rb = GetComponent<Rigidbody2D>();
+            _target = enemyManager.Target;
         }
 
         void FixedUpdate()
         {
+            x = _target.transform.position.x - _rb.transform.position.x;
+            y = _target.transform.position.y - _rb.transform.position.y;
+
+            _distance = Mathf.Sqrt(x*x + y*y);
+
             Hitting();
         }
 
         void Hitting()
         {
-            _time += Time.deltaTime;
-            if(_time >= _cooldown)
+            _AtTime += Time.deltaTime;
+            if(_AtTime >= _attackCooldown)
             {
                 if(IsHit()) Debug.Log("Ko ma biish we");
-                _time = 0;
+                _AtTime = 0;
             }
+            
         }
 
         bool IsHit()
         {
-            Debug.Log("aaa");
-            float x = _target.transform.position.x - _rb.transform.position.x;
-            float y = _target.transform.position.y - _rb.transform.position.y;
-            float _distance = Mathf.Sqrt(x*x + y*y);
-
-            if(_distance <= _range)return true;
+            Debug.Log("Vragat se opitva da te udari");
+            
+            if(_distance <= _attackRange)return true;
             return false;
         }
     }
